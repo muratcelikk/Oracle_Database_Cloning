@@ -1,0 +1,40 @@
+Stop Oracle
+
+$ # EM
+$ emctl stop dbconsole
+
+---$ # database and listener (>=10g)
+$ dbshut $ORACLE_HOME
+
+--$ # listener (<10g)
+$ lsnrctl stop
+
+Create TAR File
+# tar -cvf /tmp/u01.tar /u01
+# gzip /tmp/u01.tar
+
+Transfer TAR File
+# scp /tmp/u01.tar.gz root@192.168.2.136:/tmp/u01.tar.gz
+
+Extract TAR File
+# gunzip /tmp/u01.tar.gz
+# cd /
+# tar -xvf /tmp/u01.tar
+
+Check File Ownership
+# chown -R oracle:oinstall /u01
+
+Root Configuration Scripts//ROOT olarak
+/u01/app/oraInventory/orainstRoot.sh
+/u01/app/oracle/product/11.2.0/db_1/root.sh
+
+Modify Config Files
+# scp /home/oracle/.bash_profile oracle@192.168.2.136:/home/oracle/.bash_profile
+DB11G:/u01/app/oracle/product/11.2.0/db_1:Y
+
+Start Oracle
+-----$ # listener (<10g)
+$ lsnrctl start
+
+$ # database and listener (>=10g)
+$ dbstart $ORACLE_HOME
